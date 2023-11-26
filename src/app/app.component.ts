@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, from, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -48,7 +48,9 @@ export class AppComponent {
    arr1 = [1,2,3,4,5,6,7,]
    arr2 = ['A', 'B', 'C', 'D', 'E', 'F']
 
-   myObservable = of( this.arr1, this.arr2, 1, 2 ,"Jignesh ")
+  //  myObservable = of( this.arr1, this.arr2, 1, 2 ,"Jignesh ")
+
+   myObservable = from(this.arr1, )
   ngOnInit(){
     this.myObservable.subscribe((res:any)=>{
       console.log(res)
