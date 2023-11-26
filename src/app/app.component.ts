@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -35,23 +35,27 @@ export class AppComponent {
   
 
   // Create a new Observable with Create Method...
-  myObservable = Observable.create((observer:any)=>{
-    setTimeout(()=>observer.next("A"),1000)
-    setTimeout(()=>observer.next("B"),2000)
-    // setTimeout(()=>observer.error( new Error ('Something went worng in observable ...3')),3000)
-    setTimeout(()=>observer.next("C"),4000)
-    setTimeout(()=>observer.next("D"),5000)
-    // setTimeout(()=>observer.complete(),6000)
-  })
+  // myObservable = Observable.create((observer:any)=>{
+  //   setTimeout(()=>observer.next("A"),1000)
+  //   setTimeout(()=>observer.next("B"),2000)
+  //   // setTimeout(()=>observer.error( new Error ('Something went worng in observable ...3')),3000)
+  //   setTimeout(()=>observer.next("C"),4000)
+  //   setTimeout(()=>observer.next("D"),5000)
+  //   // setTimeout(()=>observer.complete(),6000)
+  // })
 
+  // Of Oprator 
+   arr1 = [1,2,3,4,5,6,7,]
+   arr2 = ['A', 'B', 'C', 'D', 'E', 'F']
 
+   myObservable = of( this.arr1, this.arr2, 1, 2 ,"Jignesh ")
   ngOnInit(){
     this.myObservable.subscribe((res:any)=>{
       console.log(res)
     }, (error:any)=>{
       alert(error.message)
     }, ()=>{
-      alert("Done with observable method call")
+      // alert("Done with observable method call")
     })
   }
 }
