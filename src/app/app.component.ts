@@ -13,8 +13,10 @@ export class AppComponent {
   // But Promises is Take full response form server. Promise provide us single response 
   // But Observable stream a data request and then data moves in to chanks 
 
-  myObservable  =  new Observable ((observer)=>{
-    console.log("Observable is Starting")
+
+  // Create a new Observable with constructor
+  // myObservable  =  new Observable ((observer)=>{
+  //   console.log("Observable is Starting")
     // observer.next("1")
     // observer.next("2")
     // observer.next("3")
@@ -23,17 +25,30 @@ export class AppComponent {
     // console.log("Observable is Finished")
 
     //  Error  and complete Of Observable
-    setTimeout(()=>observer.next("1"),1000)
-    setTimeout(()=>observer.next("2"),2000)
+    // setTimeout(()=>observer.next("1"),1000)
+    // setTimeout(()=>observer.next("2"),2000)
     // setTimeout(()=>observer.error( new Error ('Something went worng in observable ...3')),3000)
-    setTimeout(()=>observer.next("4"),4000)
-    setTimeout(()=>observer.next("5"),5000)
-    setTimeout(()=>observer.complete(),6000)
+    // setTimeout(()=>observer.next("4"),4000)
+    // setTimeout(()=>observer.next("5"),5000)
+    // setTimeout(()=>observer.complete(),6000)
+  // })
+  
+
+  // Create a new Observable with Create Method...
+  myObservable = Observable.create((observer:any)=>{
+    setTimeout(()=>observer.next("A"),1000)
+    setTimeout(()=>observer.next("B"),2000)
+    // setTimeout(()=>observer.error( new Error ('Something went worng in observable ...3')),3000)
+    setTimeout(()=>observer.next("C"),4000)
+    setTimeout(()=>observer.next("D"),5000)
+    // setTimeout(()=>observer.complete(),6000)
   })
+
+
   ngOnInit(){
-    this.myObservable.subscribe((res)=>{
+    this.myObservable.subscribe((res:any)=>{
       console.log(res)
-    }, (error)=>{
+    }, (error:any)=>{
       alert(error.message)
     }, ()=>{
       alert("Done with observable method call")
