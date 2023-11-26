@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, from, of } from 'rxjs';
+import { Observable, filter, from, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -50,11 +50,19 @@ export class AppComponent {
 
   //  myObservable = of( this.arr1, this.arr2, 1, 2 ,"Jignesh ")
 
-   myObservable = from(this.arr1, )
+   myObservable = from(this.arr1)
+   
+   tromformObs = this.myObservable.pipe(map((val)=>{
+    return val*5
+   }))
+   filterObsrvable = this.tromformObs.pipe(map((val:any)=>{
+    console.log(val>=30)
+   }))
+
   ngOnInit(){
-    this.myObservable.subscribe((res:any)=>{
+    this.filterObsrvable.subscribe((res:any)=>{
       console.log(res)
-    }, (error:any)=>{
+    }, (error:any)=>{ 
       alert(error.message)
     }, ()=>{
       // alert("Done with observable method call")
